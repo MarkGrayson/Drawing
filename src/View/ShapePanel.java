@@ -1,4 +1,4 @@
-package Drawing.Frame;
+package View;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
