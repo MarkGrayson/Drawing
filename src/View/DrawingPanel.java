@@ -5,7 +5,6 @@ import java.awt.Color;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.Color;
 import java.awt.Dimension;
 
 public class DrawingPanel extends JPanel
@@ -26,18 +25,6 @@ public class DrawingPanel extends JPanel
 	private SpringLayout baseLayout;
 	private ImageIcon saveIcon;
 	private DrawingController baseController;
-
-	private int[] setupArray()
-	{
-		int length = (int)(Math.random() * 10) + 3;
-		int [] randomArray = new int [length];
-		for(int index =0; index < length; index ++)
-		{
-			randomArray[index] = (int)(Math.random()* 50) + 3;
-		}
-		return randomArray;
-	}
-	
 	
 public DrawingPanel(DrawingController baseController)
 {
@@ -53,6 +40,10 @@ public DrawingPanel(DrawingController baseController)
 	resetButton = new JButton("Reset");
 	polygonButton = new JButton("Draw Polygons");
 	circleButton = new JButton("Draw Circles");
+	saveButton = new JButton("Save");
+	randomArrayButton = new JButton("Random Array");
+	sortArrayButton = new JButton("Sort Array");
+	buildButton = new JButton("Build");
 
 	
 	
@@ -61,6 +52,18 @@ public DrawingPanel(DrawingController baseController)
 	setupListeners();
 	
 }
+
+private int[] setupArray()
+{
+	int length = (int)(Math.random() * 10) + 3;
+	int [] randomArray = new int [length];
+	for(int index =0; index < length; index ++)
+	{
+		randomArray[index] = (int)(Math.random()* 50) + 3;
+	}
+	return randomArray;
+}
+
 
 private void setupPanel()
 {
