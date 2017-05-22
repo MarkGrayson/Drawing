@@ -6,11 +6,22 @@ import Drawing.controller.DrawingController;
 
 public class DrawingFrame extends JFrame
 {
-	private ShapePanel shapePanel;
-	private JButton DrawingButton;
+	private DrawingController baseController;
+	private DrawingPanel appPanel;
 	
-	private void setupPanel()
+	public DrawingFrame(DrawingController baseController)
 	{
-		this.setLayout(bas);
+		super();
+		this.baseController = baseController;
+		this.appPanel = new DrawingPanel(baseController);
+		
+		this.setupFrame();
+	}
+	
+	private void setupFrame()
+	{
+		this.setContentPane(appPanel);
+		this.setSize(new Dimension(500, 500));
+		this.setVisible(true);
 	}
 }

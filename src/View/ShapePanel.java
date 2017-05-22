@@ -24,8 +24,8 @@ import java.util.ArrayList;
 public class ShapePanel extends JPanel
 {
 	private DrawingController baseController;
-	private ArrayList<Rectangle> rectangleList;
-	private ArrayList<Shape> triagnleList;
+	private ArrayList<Shape> rectangleList;
+	private ArrayList<Shape> triangleList;
 	private ArrayList<Shape> circleList;
 	private ArrayList<Shape> ellipseList;
 	private ArrayList<Shape> polygonList;
@@ -137,7 +137,7 @@ public class ShapePanel extends JPanel
 		{
 			int vertexCount = (int)(Math.random() * 7) + 4;
 			int [] xVertices = new int[vertexCount];
-			int [] uVertices = new int[vertexCount];
+			int [] yVertices = new int[vertexCount];
 			for(int vertex = 0; vertex < vertexCount; vertex++)
 			{
 				int xCorner = (int)(Math.random() * this.getWidth());
@@ -167,12 +167,19 @@ public class ShapePanel extends JPanel
 	{
 		this.setBackground(Color.BLUE); 
 		
-		Graphics2D drawingGrapics = (Graphics2D) graphics;
-		for(Rectangle currentRectangel : rectangleList)
+		Graphics2D drawingGraphics = (Graphics2D) graphics;
+		
+		for(ArrayList<Shape> currentList : shapes)
+		{
+			drawShapes(currentList, drawingGraphics);
+		}
+		
+		for(Shape currentRectangle : rectangleList)
 		{
 			drawingGraphics.setColor(getRandomColor());
 			int strokeWidth = (int) (Math.random() * 10) + 1;
 			drawingGraphics.setStroke(new BasicStroke(strokeWidth));
+			drawingGraphics.draw(currentRectangle);
 			
 			int randomness = (int) (Math.random() * 35);
 			
