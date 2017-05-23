@@ -215,7 +215,27 @@ public class ShapePanel extends JPanel
 			{
 				graphics.draw(currentShape);
 			}
+		}
 	}
-}
-	
+		
+		public void savePanel()
+		{
+			BufferedImage panelImage = new BufferedImage(this.getSize().width, this.getSize().height,BufferedImage.TYPE_INT_ARGB);
+			Graphics fileGraphics = panelImage.getGraphics();
+			
+			Color background = new Color(getBackground().getRed(), getBackground().getGreen(), getBackground().getBlue());
+			fileGraphics.setColor(background);
+			fileGraphics.fillRect(0, 0, this.getSize().width, this.getSize().height);
+			this.printAll(fileGraphics);
+			fileGraphics.dispose();
+			
+			try
+			{
+				ImageIO.write(panelImage, "png", new File("My Modern art "+ LocalDateTime.now().getHour() + " " + LocalDateTime.now().getMinute() + ".png"));
+			}
+			catch(IOException error)
+			{
+				JOptionPane.showMessageDialog(this, "Save Failed");
+			}
+		}		
 }

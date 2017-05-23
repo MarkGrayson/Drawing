@@ -35,14 +35,29 @@ public DrawingPanel(DrawingController baseController)
 	graphPanel = new GraphPanel(setupArray());
 	shapePanel = new ShapePanel(baseController);
 	rectangleButton = new JButton("Draw Rectangles");
+	baseLayout.putConstraint(SpringLayout.NORTH, rectangleButton, 10, SpringLayout.NORTH, this);
+	baseLayout.putConstraint(SpringLayout.WEST, rectangleButton, 217, SpringLayout.WEST, this);
 	ellipseButton = new JButton("Draw Ellipses");
+	baseLayout.putConstraint(SpringLayout.NORTH, ellipseButton, 80, SpringLayout.NORTH, this);
+	baseLayout.putConstraint(SpringLayout.WEST, ellipseButton, 10, SpringLayout.WEST, this);
 	triangleButton = new JButton("Draw Triangles");
+	baseLayout.putConstraint(SpringLayout.WEST, triangleButton, 10, SpringLayout.WEST, this);
 	resetButton = new JButton("Reset");
+	baseLayout.putConstraint(SpringLayout.WEST, resetButton, 10, SpringLayout.WEST, this);
 	polygonButton = new JButton("Draw Polygons");
+	baseLayout.putConstraint(SpringLayout.WEST, polygonButton, 10, SpringLayout.WEST, this);
 	circleButton = new JButton("Draw Circles");
+	baseLayout.putConstraint(SpringLayout.WEST, circleButton, 10, SpringLayout.WEST, this);
+	baseLayout.putConstraint(SpringLayout.SOUTH, circleButton, -6, SpringLayout.NORTH, ellipseButton);
 	saveButton = new JButton("Save");
+	baseLayout.putConstraint(SpringLayout.NORTH, saveButton, 6, SpringLayout.SOUTH, resetButton);
+	baseLayout.putConstraint(SpringLayout.WEST, saveButton, 0, SpringLayout.WEST, circleButton);
 	randomArrayButton = new JButton("Random Array");
+	baseLayout.putConstraint(SpringLayout.NORTH, randomArrayButton, 6, SpringLayout.SOUTH, rectangleButton);
+	baseLayout.putConstraint(SpringLayout.WEST, randomArrayButton, 10, SpringLayout.WEST, rectangleButton);
 	sortArrayButton = new JButton("Sort Array");
+	baseLayout.putConstraint(SpringLayout.NORTH, sortArrayButton, 0, SpringLayout.NORTH, rectangleButton);
+	baseLayout.putConstraint(SpringLayout.WEST, sortArrayButton, 13, SpringLayout.WEST, this);
 	buildButton = new JButton("Build");
 
 	
@@ -71,6 +86,8 @@ private void setupPanel()
 	this.setBackground(Color.BLUE);
 	this.setSize(new Dimension(600, 600));
 	
+	this.add(graphPanel);
+	this.add(shapePanel);
 	this.add(rectangleButton);
 	this.add(circleButton);
 	this.add(ellipseButton);
@@ -84,24 +101,15 @@ private void setupPanel()
 
 private void setupLayout()
 {
-	baseLayout.putConstraint(SpringLayout.NORTH, rectangleButton, 10, SpringLayout.NORTH, this);
-	baseLayout.putConstraint(SpringLayout.WEST, rectangleButton, 10, SpringLayout.WEST, this);
-	baseLayout.putConstraint(SpringLayout.NORTH, circleButton, 6, SpringLayout.SOUTH, rectangleButton);
-	baseLayout.putConstraint(SpringLayout.WEST, circleButton, 0, SpringLayout.WEST, rectangleButton);
-	baseLayout.putConstraint(SpringLayout.NORTH, ellipseButton, 6, SpringLayout.SOUTH, circleButton);
-	baseLayout.putConstraint(SpringLayout.WEST, ellipseButton, 0, SpringLayout.WEST, rectangleButton);
 	baseLayout.putConstraint(SpringLayout.NORTH, triangleButton, 8, SpringLayout.SOUTH, ellipseButton);
-	baseLayout.putConstraint(SpringLayout.WEST, triangleButton, 0, SpringLayout.WEST, rectangleButton);
 	baseLayout.putConstraint(SpringLayout.NORTH, polygonButton, 6, SpringLayout.SOUTH, triangleButton);
-	baseLayout.putConstraint(SpringLayout.WEST, polygonButton, 0, SpringLayout.WEST, rectangleButton);
 	baseLayout.putConstraint(SpringLayout.NORTH, resetButton, 6, SpringLayout.SOUTH, polygonButton);
-	baseLayout.putConstraint(SpringLayout.WEST, resetButton, 0, SpringLayout.WEST, rectangleButton);
 
 }
 
 private void setupListeners()
 {
-	buildButton.addActionListener(new ActionListener()
+	rectangleButton.addActionListener(new ActionListener()
 	{
 	public void actionPerformed(ActionEvent clicked)
 		{
@@ -109,6 +117,71 @@ private void setupListeners()
 		}
 	}
 );
+	
+	randomArrayButton.addActionListener(new ActionListener()
+	{
+	public void actionPerformed(ActionEvent clicked)
+		{
+			shapePanel.RandomArray();
+		}
+	}
+);
+	
+	circleButton.addActionListener(new ActionListener()
+	{
+	public void actionPerformed(ActionEvent clicked)
+		{
+			shapePanel.addCircles();
+		}
+	}
+);
+	
+	triangleButton.addActionListener(new ActionListener()
+	{
+	public void actionPerformed(ActionEvent clicked)
+		{
+			shapePanel.addTriangles();
+		}
+	}
+);
+
+	polygonButton.addActionListener(new ActionListener()
+	{
+	public void actionPerformed(ActionEvent clicked)
+		{
+			shapePanel.addPolygons();
+		}
+	}
+);
+
+	ellipseButton.addActionListener(new ActionListener()
+	{
+	public void actionPerformed(ActionEvent clicked)
+		{
+			shapePanel.addEllipses();
+		}
+	}
+);
+
+	resetButton.addActionListener(new ActionListener()
+	{
+	public void actionPerformed(ActionEvent clicked)
+		{
+			shapePanel.reset();
+		}
+	}
+);
+
+	saveButton.addActionListener(new ActionListener()
+	{
+	public void actionPerformed(ActionEvent clicked)
+		{
+			shapePanel.savePanel();
+		}
+	}
+);
+
+	
 }
 
 }
